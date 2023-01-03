@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th>
+<head>
+    <meta charset="UTF-8" xmlns:th>
+    <title>Taxi Cab Booking</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <script type="application/x-javascript">
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+
+    <!-- css files -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.css"> <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all" /> <!-- Style-CSS -->
+    <link rel="stylesheet" href="/assets/css/fontawesome-all.css"> <!-- Font-Awesome-Icons-CSS -->
+    <!-- //css files -->
+
+    <!-- web-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext" rel="stylesheet">
+    <!-- //web-fonts -->
+</head>
+<body>
+    <div th:replace="partials/header :: header"></div>
+
+    <div class="banner" id="home">
+        <div th:replace="partials/secondHeader :: header"></div>
+    </div>
+
+    <section class="py-5">
+        <div class="container py-lg-5 py-3">
+            <p>Error Page - Something went wrong! Please refresh the page or try again later.</p>
+        </div>
+    </section>
+
+    <div th:replace="partials/footer :: footer"></div>
+
+    <!-- js -->
+    <script type="text/javascript" src="/assets/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap -->
+    <!-- //js -->
+</body>
+</html>
