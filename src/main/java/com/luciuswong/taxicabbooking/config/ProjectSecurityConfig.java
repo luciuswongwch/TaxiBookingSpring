@@ -10,16 +10,17 @@ import org.springframework.security.web.SecurityFilterChain;
 public class ProjectSecurityConfig {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().ignoringRequestMatchers("/saveMsg")
-                .ignoringRequestMatchers(PathRequest.toH2Console())
+        http.csrf().ignoringRequestMatchers(PathRequest.toH2Console())
                 .ignoringRequestMatchers("/public/**")
                 .and().authorizeHttpRequests()
                 .requestMatchers("/dashboard").authenticated()
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/home").permitAll()
                 .requestMatchers("/about").permitAll()
+                .requestMatchers("/services").permitAll()
                 .requestMatchers("/contact").permitAll()
-                .requestMatchers("/saveMsg").permitAll()
+                .requestMatchers("/saveContactMsg").permitAll()
+                .requestMatchers("/booking").permitAll()
                 .requestMatchers("/assets/**").permitAll()
                 .requestMatchers("/login").permitAll()
                 .requestMatchers("/logout").permitAll()

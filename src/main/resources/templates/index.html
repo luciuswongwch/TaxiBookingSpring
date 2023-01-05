@@ -12,8 +12,8 @@
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
-	<meta name="keywords" content="Taxi Cab Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<!--	<meta name="keywords" content="Taxi Cab Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, -->
+<!--	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />-->
 	<script type="application/x-javascript">
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
@@ -60,7 +60,7 @@
 									<span class="fas fa-taxi"></span>
 									<h1>24/7 Taxi Service </h1>
 									<h2 class="mb-5"><i class="fas fa-phone"></i> (236) 123 1234</h2>
-									<a href="booking.html">Book Now </a>
+									<a th:href="@{/booking}">Book Now </a>
 								</div>
 							</div>
 						</div>
@@ -72,7 +72,7 @@
 									<span class="fas fa-taxi"></span>
 									<h4>Online Cab Booking</h4>
 									<h5 class="mb-5">No Extra Charges</h5>
-									<a href="booking.html">Book Now </a>
+									<a th:href="@{/booking}">Book Now </a>
 								</div>
 							</div>
 						</div>
@@ -84,7 +84,7 @@
 									<span class="fas fa-taxi"></span>
 									<h4>Reach Your Destination</h4>
 									<h5 class="mb-5">Within Exact Time </h5>
-									<a href="booking.html">Book Now </a>
+									<a th:href="@{/booking}">Book Now </a>
 								</div>
 							</div>
 						</div>
@@ -96,7 +96,7 @@
 									<span class="fas fa-taxi"></span>
 									<h4>Travel Safe & Secure</h4>
 									<h5 class="mb-5">Assured Cab Service</h5>
-									<a href="booking.html">Book Now </a>
+									<a th:href="@{/booking}">Book Now </a>
 								</div>
 							</div>
 						</div>
@@ -144,7 +144,7 @@
 			<div class="row about-grids-bottom text-left">
 				<div class="col-md-4 mb-md-0 mb-5 about-bottom-grid">
 					<h4 class="mb-4">Lorem ipsum dolor sit amet, In consectetur adipiscing elit. Etiam commodo urna dolor,</h4>
-					<a href="about.html"> More About Us</a>	
+					<a th:href="@{/about}"> More About Us</a>
 				</div>
 				<div class="col-md-4 about-bottom-grid">
 					<p>Lorem ipsum dolor sit init amet, consectetur elit adipiscing elit. Etiam commodo urna dolor, eget lacinia est aliquam id. Proin velit libero, vestibul umac orci eu, faucibus consectetur dolor. Cras ullamcorper elit eros, nec bibendum lacus accumsan eu. Donec non </p>
@@ -384,92 +384,6 @@
 <!--//testimonials-->
 
 <div th:replace="partials/footer :: footer"></div>
-			
-<!-- login and register modal -->
-<!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--	<div class="modal-dialog" role="document">-->
-<!--		<div class="modal-content">-->
-<!--			<div class="modal-header">-->
-<!--				<h5 class="modal-title" id="exampleModalLabel">Sign In to your account</h5>-->
-<!--				<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--					<span aria-hidden="true">&times;</span>-->
-<!--				</button>-->
-<!--			</div>-->
-<!--			<div class="modal-body">-->
-<!--				<form action="#" method="post">-->
-<!--					<div class="form-group">-->
-<!--						<label for="recipient-name" class="col-form-label">User Name</label>-->
-<!--						<input type="text" class="form-control" placeholder="User Name" name="Name" id="recipient-name" required="">-->
-<!--					</div>-->
-<!--					<div class="form-group">-->
-<!--						<label for="password" class="col-form-label">Password</label>-->
-<!--						<input type="password" class="form-control" placeholder="Password" name="Password" id="password" required="">-->
-<!--					</div>-->
-<!--					<div class="row sub-w3l my-3">-->
-<!--						<div class="col sub-agile">-->
-<!--							<input type="checkbox" id="brand1" value="">-->
-<!--							<label for="brand1" class="text-white">-->
-<!--								<span></span>Remember me?</label>-->
-<!--						</div>-->
-<!--						<div class="col forgot-w3l text-right">-->
-<!--							<a href="#" class="text-white">Forgot Password?</a>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--					<div class="right-w3l">-->
-<!--						<input type="submit" class="form-control" value="Sign In">-->
-<!--					</div>-->
-<!--					<p class="text-center dont-do text-white mt-3">Don't have an account?-->
-<!--						<a href="#" data-toggle="modal" data-target="#exampleModal1" class="text-white">-->
-<!--							Register Now</a>-->
-<!--					</p>-->
-<!--				</form>-->
-<!--			</div>-->
-<!--		</div>-->
-<!--	</div>-->
-<!--</div>-->
-<!--<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">-->
-<!--	<div class="modal-dialog" role="document">-->
-<!--		<div class="modal-content">-->
-<!--			<div class="modal-header">-->
-<!--				<h5 class="modal-title" id="exampleModalLabel1">Register your account</h5>-->
-<!--				<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--					<span aria-hidden="true">&times;</span>-->
-<!--				</button>-->
-<!--			</div>-->
-<!--			<div class="modal-body">-->
-<!--				<form action="#" method="post">-->
-<!--					<div class="form-group">-->
-<!--						<label for="recipient-name" class="col-form-label">User Name</label>-->
-<!--						<input type="text" class="form-control" placeholder="User Name" name="Name" id="recipient-rname" required="">-->
-<!--					</div>-->
-<!--					<div class="form-group">-->
-<!--						<label for="recipient-email" class="col-form-label">Email</label>-->
-<!--						<input type="email" class="form-control" placeholder="Email" name="Email" id="recipient-email" required="">-->
-<!--					</div>-->
-<!--					<div class="form-group">-->
-<!--						<label for="password1" class="col-form-label">Password</label>-->
-<!--						<input type="password" class="form-control" placeholder="Password" name="Password" id="password1" required="">-->
-<!--					</div>-->
-<!--					<div class="form-group">-->
-<!--						<label for="password2" class="col-form-label">Confirm Password</label>-->
-<!--						<input type="password" class="form-control" placeholder="Confirm Password" name="Confirm Password" id="password2" required="">-->
-<!--					</div>-->
-<!--					<div class="sub-w3l">-->
-<!--						<div class="sub-agile">-->
-<!--							<input type="checkbox" id="brand2" value="">-->
-<!--							<label for="brand2" class="mb-3">-->
-<!--								<span></span>I Accept to the Terms & Conditions</label>-->
-<!--						</div>-->
-<!--					</div>-->
-<!--					<div class="right-w3l">-->
-<!--						<input type="submit" class="form-control" value="Register">-->
-<!--					</div>-->
-<!--				</form>-->
-<!--			</div>-->
-<!--		</div>-->
-<!--	</div>-->
-<!--</div>-->
-<!-- //login and register modal -->
 
 <!-- js-scripts -->		
 
@@ -527,8 +441,7 @@
 	</script>
 	<!--//slider-->
 
-	<!-- start-smooth-scrolling -->
-<!--	<script src="/assets/js/SmoothScroll.min.js"></script>-->
+	<!-- scrollTop -->
 	<script type="text/javascript" src="/assets/js/move-top.js"></script>
 	<script type="text/javascript" src="/assets/js/easing.js"></script>
 	<script type="text/javascript">
@@ -539,7 +452,6 @@
 			});
 		});
 	</script>
-	<!-- here stars scrolling icon -->
 	<script type="text/javascript">
 		$(document).ready(function() {
 			/*
@@ -555,8 +467,7 @@
 								
 			});
 	</script>
-	<!-- //here ends scrolling icon -->
-	<!-- start-smoth-scrolling -->
+	<!-- // scrollTop -->
 	
 <!-- //js-scripts -->
 

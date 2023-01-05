@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" xmlns:th>
     <title></title>
 </head>
 <body>
@@ -12,15 +12,15 @@
                 <div class="col-lg-3 col-sm-6 mb-lg-0 mb-5 footer-grid-agileits-w3ls1 text-left">
                     <h3 class="mb-sm-5 mb-4 mt-sm-0 mt-4">About Company</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <a href="#" class="read">Know More <i class="fas fa-caret-right"></i></a>
+                    <a th:href="@{/about}" class="read">Know More <i class="fas fa-caret-right"></i></a>
                 </div>
                 <div class="col-lg-3 col-sm-6 mb-lg-0 mb-5 footer-grid-agileits-w3ls1 text-left">
                     <h3 class="mb-sm-5 mb-4">Locate Us</h3>
                     <ul class="w3ls-footer-bottom-list">
-                        <li> <span class="fas fa-map-marker"></span> 3481 Jack Street Beverly Jack Hills<span> 90210 Block, Canada </span></li>
-                        <li> <span class="fas fa-envelope"></span> <a href="mailto:name@example.com"> mail@example.com</a> </li>
-                        <li> <span class="fas fa-phone"></span> 236 514 8410 </li>
-                        <li> <span class="fas fa-globe"></span> <a href="#"> www.websitename.com</a> </li>
+                        <li> <span class="fas fa-map-marker"></span> British Columbia, Canada</li>
+                        <li> <span class="fas fa-envelope"></span> <a href="mailto:luciuswongwch@gmail.com"> luciuswongwch@gmail.com</a> </li>
+                        <li> <span class="fas fa-phone"></span> 236 514 8410</li>
+                        <li> <span class="fas fa-globe"></span> <a href="https://luciuswong.com" target="_blank"> www.luciuswong.com</a> </li>
                     </ul>
                 </div>
 
@@ -29,17 +29,17 @@
                         <h3 class="mb-sm-5 mb-4">Stay In Touch</h3>
                         <ul>
                             <li class="mr-1">
-                                <a class="facebook" href="#">
+                                <a class="facebook" href="https://github.com/luciuswongwch" target="_blank">
                                     <i class="fab fa-github"></i>
                                 </a>
                             </li>
                             <li class="mr-1">
-                                <a class="facebook" href="#">
+                                <a class="facebook" href="https://leetcode.com/luciuswch/" target="_blank">
                                     <i class="fa fa-code"></i>
                                 </a>
                             </li>
                             <li>
-                                <a class="facebook" href="#">
+                                <a class="facebook" href="https://www.linkedin.com/in/luciuswongwch/" target="_blank">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
                             </li>
