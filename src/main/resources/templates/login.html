@@ -43,11 +43,11 @@
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <div class="form-group">
                 <label for="username" class="col-form-label">Username</label>
-                <input type="text" class="form-control" placeholder="Username" name="Name" id="username" required>
+                <input type="text" class="form-control" placeholder="Username" name="username" id="username" required>
             </div>
             <div class="form-group">
                 <label for="password" class="col-form-label">Password</label>
-                <input type="password" class="form-control" placeholder="Password" name="Password" id="password" required>
+                <input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
             </div>
             <div class="row sub-w3l my-3">
                 <div class="col sub-agile">
@@ -61,7 +61,7 @@
             <div class="right-w3l">
                 <input type="submit" class="form-control" value="Sign in">
             </div>
-            <p class="text-center dont-do text-white mt-3">Don't have an account?
+            <p class="text-center dont-do mt-3">Don't have an account?
                 <a th:href="@{/public/register}">Register Now</a>
             </p>
         </form>

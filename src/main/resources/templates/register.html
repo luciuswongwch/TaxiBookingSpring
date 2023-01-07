@@ -35,33 +35,36 @@
 
 <section class="py-5">
   <div class="container py-lg-5 py-3">
-    <div class="alert alert-danger" th:if="${!#strings.isEmpty(error)}" th:text="${error}"></div>
+    <div class="alert alert-danger" role="alert"
+         th:each="error: ${#fields.errors('person.*')}" th:text="${error}"></div>
+    <div class="alert alert-danger" th:each="error: ${errorMessages}" th:text="${error}"></div>
     <h3 class="heading text-capitalize text-center">Register</h3>
-    <form action="/public/createUser" method="post" th:object="${user}">
+    <form action="/public/createUser" method="post" th:object="${person}">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
       <div class="form-group">
-        <label for="username" class="col-form-label">Username</label>
-        <input type="text" class="form-control" placeholder="Username" th:field="*{username}" id="username" required>
+        <label th:for="*{username}" class="col-form-label mandatory-field">Username</label>
+        <input type="text" class="form-control" placeholder="Username" th:field="*{username}" required>
       </div>
       <div class="form-group">
-        <label for="email" class="col-form-label">Email</label>
-        <input type="email" class="form-control" placeholder="Email" th:field="*{email}" id="email" required>
+        <label th:for="*{email}" class="col-form-label mandatory-field">Email</label>
+        <input type="email" class="form-control" placeholder="Email" th:field="*{email}" required>
       </div>
       <div class="form-group">
-        <label for="confirmEmail" class="col-form-label">Confirm email</label>
-        <input type="email" class="form-control" placeholder="Email" th:field="*{confirmEmail}" id="confirmEmail" required>
+        <label th:for="*{confirmEmail}" class="col-form-label mandatory-field">Confirm email</label>
+        <input type="email" class="form-control" placeholder="Confirm email" th:field="*{confirmEmail}" required>
       </div>
       <div class="form-group">
-        <label for="password" class="col-form-label">Password</label>
-        <input type="password" class="form-control" placeholder="Password" th:field="*{password}" id="password" required>
+        <label th:for="*{password}" class="col-form-label mandatory-field">Password</label>
+        <input type="password" class="form-control" placeholder="Password" th:field="*{password}" required>
       </div>
       <div class="form-group">
-        <label for="confirmPassword" class="col-form-label">Confirm password</label>
-        <input type="password" class="form-control" placeholder="Confirm password" th:field="*{confirmPassword}" id="confirmPassword" required>
+        <label th:for="*{confirmPassword}" class="col-form-label mandatory-field">Confirm password</label>
+        <input type="password" class="form-control" placeholder="Confirm password" th:field="*{confirmPassword}" required>
       </div>
       <div class="sub-w3l">
         <div class="sub-agile">
           <input type="checkbox" id="brand2" value="" required>
-          <label for="brand2" class="mb-3">
+          <label for="brand2" class="mb-3 mandatory-field">
             <span></span>I accept to the terms & conditions</label>
         </div>
       </div>

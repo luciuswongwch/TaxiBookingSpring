@@ -62,66 +62,65 @@
 			<div class="col-lg-6 book-appointment p-sm-5 py-5 px-4">
 				<h2>Personal Details</h2>
 				<div class="book-agileinfo-form">
-					<form action="#" method="post">
+					<div class="alert alert-danger" role="alert"
+						 th:each="error: ${#fields.errors('booking.*')}" th:text="${error}"></div>
+					<form th:action="@{/saveBooking}" method="post" th:object="${booking}">
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 						<div class="row main-agile-sectns">
 							<div class="col-md-6 agileits-btm-spc form-text1">
-								<input type="text" name="Name" placeholder="Full Name" required>
+								<input type="text" th:field="*{name}" placeholder="Name" required>
 							</div>
 							<div class="col-md-6 agileits-btm-spc form-text2">
-								<input type="text" name="Phone no" placeholder="Phone number" required>
+								<input type="text" th:field="*{phoneNumber}" placeholder="Phone number" required>
 							</div>
 						</div>
 						<div class="row ">
 							<div class="col-md-6 agileits-btm-spc form-text1">
-								<input type="email" name="email" placeholder="Email (Optional)">
+								<input type="email" th:field="*{email}" placeholder="Email (Optional)">
 							</div>
 							<div class="col-md-6">
 								<div class="agileits-btm-spc">
-									<select id="cab" onchange="change_country(this.value)" class="frm-field required sect">
-										<option value="">Select Cab</option>
-										<option value="">Mini</option>
-										<option value="">Sedan</option>
-										<option value="">Elite</option>
+									<select name="cabType" id="cabType" class="required sect">
+										<option value="" th:disabled="disabled" th:selected="selected">Select Cab</option>
+										<option th:value="'mini'">Mini</option>
+										<option th:value="'sedan'">Sedan</option>
+										<option th:value="'elite'">Elite</option>
 									</select>
 								</div>
 							</div>
 						</div>
 						<div class="clear"></div>
-						<h2 class="sub-head-w3ls">Booking Details</h2>
+						<h2 class="sub-head-w3ls">Booking details</h2>
 						<div class="row main-agile-sectns">
 							<div class="col-md-6 agileits-btm-spc form-text1">
-								<input id="datepicker" name="Text" type="text" placeholder="Pick-up Date" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}"
-									required="">
+								<input type="text" th:field="*{pickUpDate}" placeholder="Pick-up date" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}"
+									required>
 							</div>
 							<div class="col-md-6 agileits-btm-spc form-text2">
-								<input type="text" id="timepicker" name="Time" class="timepicker form-control" placeholder="Pick-up Time" value="">
+								<input type="text" th:field="*{pickUpTime}" placeholder="Pick-up time" value="" required>
 							</div>
 						</div>
 						<div class="row main-agile-sectns">
 							<div class="col-md-6 agileits-btm-spc form-text1">
-								<input type="text" name="Pick-up Location" placeholder="Pick-up Location" required>
+								<input type="text" th:field="*{pickUpLocation}" placeholder="Pick-up location" required>
 							</div>
 							<div class="col-md-6 agileits-btm-spc form-text2">
-								<input type="text" name="Drop-off Location" placeholder="Drop-off Location" required>
+								<input type="text" th:field="*{dropOffLocation}" placeholder="Drop-off location" required>
 							</div>
 						</div>
 
 						<div class="main-agile-sectns">
 							<div class="agileits-btm-spc">
-								<select id="passengers" onchange="change_country(this.value)" class="frm-field required sect">
-									<option value="">No.of Passengers</option>
-									<option value="">1</option>
-									<option value="">2</option>
-									<option value="">3</option>         
-									<option value="">4</option>
-									<option value="">5</option>
+								<select name="numberOfPassengers" id="numberOfPassengers" class="required sect">
+									<option value="" th:disabled="disabled" th:selected="selected">No.of Passengers</option>
+									<option th:each="i : ${#numbers.sequence(1, 5)}" th:value="${i}" th:text="${i}"></option>
 								</select>
 							</div>
 							<div class="agileits-btm-spc form-text2">
-								<select id="direction" onchange="change_country(this.value)" class="frm-field required">
-									<option value="">Direction</option>
-									<option value="">One Way</option>
-									<option value="">Return</option>       
+								<select name="direction" id="direction" class="required">
+									<option value="" th:disabled="disabled" th:selected="selected">Direction</option>
+									<option value="oneWay">One way</option>
+									<option value="return">Return</option>
 								</select>
 							</div>
 						</div>
@@ -155,7 +154,7 @@
 	<!-- Time -->
 	<script type="text/javascript" src="/assets/js/wickedpicker.js"></script>
 	<script type="text/javascript">
-		$('.timepicker').wickedpicker({
+		$("#pickUpTime").wickedpicker({
 			twentyFour: false
 		});
 	</script>
@@ -164,7 +163,7 @@
 	<script src="/assets/js/jquery-ui.js"></script>
 	<script>
 		$(function () {
-			$("#datepicker,#datepicker1,#datepicker2,#datepicker3").datepicker();
+			$("#pickUpDate").datepicker();
 		});
 	</script>
 	<!-- //Calendar -->

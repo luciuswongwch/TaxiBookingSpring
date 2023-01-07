@@ -1,5 +1,6 @@
 package com.luciuswong.taxicabbooking.controller;
 
+import com.luciuswong.taxicabbooking.security.AuthChecker;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
@@ -11,13 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
+
 
 @Controller
 public class LoginController {
     @RequestMapping(value="/login", method={RequestMethod.GET, RequestMethod.POST})
     public String displayLoginPage(@RequestParam(value="error", required=false) String error,
                                    @RequestParam(value="logout", required=false) String logout,
-                                   @RequestParam(value="register", required=false) String register, Model model) {
+                                   @RequestParam(value="register", required=false) String register, Model model, Principal user) {
+        if (user != null) {
+            return "redirect:/profile";
+        }
         if (error != null) {
             model.addAttribute("error", "Invalid login credentials");
         }

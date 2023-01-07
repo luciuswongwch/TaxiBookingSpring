@@ -15,7 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
     @FieldsValueMatch(field="email", fieldMatch="confirmEmail", message="Email does not match"),
     @FieldsValueMatch(field="password", fieldMatch="confirmPassword", message="Password does not match")
 })
-public class User extends BaseEntity {
+public class Person extends BaseEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
     @GenericGenerator(name="native", strategy="native")

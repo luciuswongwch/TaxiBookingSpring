@@ -364,6 +364,10 @@ h3.logo a.navbar-brand i {
 	font-size: 13px;
     letter-spacing: 2px;
 }
+.mandatory-field:after {
+    content: "*";
+    color: red;
+}
 .modal-title {
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -1600,9 +1604,7 @@ i.fa.fa-smile {
 
 .book-agileinfo-form input[type="text"],
 .book-agileinfo-form input[type="email"],
-select#passengers,
-select#cab,
-select#direction,
+.book-agileinfo-form select,
 input#datepicker {
     width: 100%;
     color: #a0a0a0;
