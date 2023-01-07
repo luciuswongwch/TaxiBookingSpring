@@ -1,16 +1,20 @@
 package com.luciuswong.taxicabbooking.controller;
 
 import com.luciuswong.taxicabbooking.model.Booking;
+import com.luciuswong.taxicabbooking.model.Person;
 import com.luciuswong.taxicabbooking.service.BookingService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.security.Principal;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -21,8 +25,16 @@ public class BookingController {
     private BookingService bookingService;
 
     @RequestMapping("/booking")
-    public String displayBookingPage(Model model) {
-        model.addAttribute("booking", new Booking());
+    public String displayBookingPage(Model model, Authentication authentication) {
+        Booking booking = new Booking();
+        if (authentication != null && authentication.isAuthenticated()) {
+            Person loggedInPerson = bookingService.getLoggedInPerson(authentication.getName());
+            if (loggedInPerson != null) {
+                booking.setName(authentication.getName());
+                booking.setEmail(loggedInPerson.getEmail());
+            }
+        }
+        model.addAttribute("booking", booking);
         return "booking.html";
     }
 
@@ -33,7 +45,7 @@ public class BookingController {
             return "booking.html";
         }
         bookingService.saveBookingDetails(booking);
-        redirectAttributes.addFlashAttribute("message", "Booking is saved successfully");
+        redirectAttributes.addFlashAttribute("message", "Booking is sent successfully");
         return "redirect:/booking";
     }
 }

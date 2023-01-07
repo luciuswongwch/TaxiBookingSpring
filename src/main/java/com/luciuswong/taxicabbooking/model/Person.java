@@ -3,6 +3,7 @@ package com.luciuswong.taxicabbooking.model;
 import com.luciuswong.taxicabbooking.annotation.FieldsValueMatch;
 import com.luciuswong.taxicabbooking.annotation.PasswordValidator;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -41,6 +42,7 @@ public class Person extends BaseEntity {
     @OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST, targetEntity=Role.class)
     @JoinColumn(name="role_id", referencedColumnName="roleId", nullable=false)
     private Role role;
+    @Valid
     @OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL, targetEntity=Address.class)
     @JoinColumn(name="address_id", referencedColumnName="addressId", nullable=false)
     private Address address;

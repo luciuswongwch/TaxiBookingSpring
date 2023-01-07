@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Range;
 
 
 @Data
@@ -34,8 +35,7 @@ public class Booking extends BaseEntity {
     private String pickUpLocation;
     @NotBlank(message="Drop-off location must not be blank")
     private String dropOffLocation;
-    @NotBlank(message="Number of passengers must not be blank")
-    @Size(min=1, max=5, message="Number of passengers must be within 1 to 5")
+    @Range(min=1, max=5, message="Number of passengers must be within 1 to 5")
     private int numberOfPassengers;
     @NotBlank(message="Direction must not be blank")
     private String direction;

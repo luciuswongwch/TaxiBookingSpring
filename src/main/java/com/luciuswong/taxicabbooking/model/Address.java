@@ -18,8 +18,8 @@ public class Address extends BaseEntity {
     @GenericGenerator(name="native", strategy="native")
     private int addressId;
 
-    @NotBlank(message="Address must not be blank")
-    @Size(min=5, message="Address must be at least 5 characters long")
+    @NotBlank(message="Street address must not be blank")
+    @Size(min=5, message="Street address must be at least 5 characters long")
     private String streetAddress;
 
     @NotBlank(message="City must not be blank")

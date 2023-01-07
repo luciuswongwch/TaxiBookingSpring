@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th>
+<html lang="en" xmlns:th xmlns:sec>
 <head>
     <meta charset="UTF-8">
     <title></title>
@@ -17,12 +17,20 @@
 
         <div class="col-md-4 top-forms mt-md-3 mt-2 mb-md-0 mb-3">
             <span class="mx-lg-4 mx-md-2 mx-1">
-                <a th:href="@{/login}">
+                <a th:href="@{/login}" sec:authorize="isAnonymous()">
                     <i class="fas fa-lock"></i> Sign In</a>
             </span>
             <span>
-                <a th:href="@{/public/register}">
+                <a th:href="@{/public/register}" sec:authorize="isAnonymous()">
                     <i class="fas fa-user"></i> Register</a>
+            </span>
+            <span>
+                <a th:href="@{/profile}" sec:authorize="isAuthenticated()">
+                    <i class="fas fa-user-circle"></i> Profile</a>
+            </span>
+            <span>
+                <a th:href="@{/logout}" sec:authorize="isAuthenticated()">
+                    <i class="fas fa-sign-out-alt"></i> Log Out</a>
             </span>
         </div>
     </div>

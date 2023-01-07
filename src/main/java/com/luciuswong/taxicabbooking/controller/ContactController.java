@@ -30,12 +30,13 @@ public class ContactController {
     }
 
     @RequestMapping(value="/saveContactMsg", method=POST)
-    public String saveMessage(@Valid @ModelAttribute("contact") Contact contact, Errors errors, RedirectAttributes redirectAttributes) {
+    public String saveMessage(@Valid @ModelAttribute("contact") Contact contact, Errors errors, Model model, RedirectAttributes redirectAttributes) {
         if (errors.hasErrors()) {
             log.error("Contact form validation error: " + errors.toString());
             return "contact.html";
         }
         contactService.saveMessageDetails(contact);
+        model.addAttribute("errorMessages", "messages");
         redirectAttributes.addFlashAttribute("message", "Contact message is sent successfully");
         return "redirect:/contact";
     }
