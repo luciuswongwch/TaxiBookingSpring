@@ -318,7 +318,7 @@ h3.logo a.navbar-brand i {
 
 
 /* login and register modal */
-
+/*
 .modal-content {
 	position: relative;
 	display: -webkit-box;
@@ -337,6 +337,7 @@ h3.logo a.navbar-brand i {
 	outline: 0;
 	color: #fff;
 }
+*/
 
 .form-control {
     letter-spacing: 1px;
@@ -368,6 +369,7 @@ h3.logo a.navbar-brand i {
     content: "*";
     color: red;
 }
+/*
 .modal-title {
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -393,6 +395,7 @@ h3.logo a.navbar-brand i {
     letter-spacing: 1px;
     font-size: 15px;
 }
+*/
 label{
     letter-spacing: 1px;
     font-size: 15px;

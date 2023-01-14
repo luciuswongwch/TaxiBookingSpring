@@ -83,9 +83,10 @@
 								<div class="agileits-btm-spc">
 									<select name="cabType" id="cabType" class="required sect">
 										<option value="" th:disabled="disabled" th:selected="selected">Select Cab</option>
-										<option th:value="'mini'">Mini</option>
-										<option th:value="'sedan'">Sedan</option>
-										<option th:value="'elite'">Elite</option>
+										<option th:each="cabType : ${T(com.luciuswong.taxicabbooking.model.Booking.CabType).values()}" th:value="${cabType}" th:text="${cabType}"></option>
+<!--										<option th:value="'mini'">Mini</option>-->
+<!--										<option th:value="'sedan'">Sedan</option>-->
+<!--										<option th:value="'elite'">Elite</option>-->
 									</select>
 								</div>
 							</div>
@@ -126,8 +127,9 @@
 							<div class="agileits-btm-spc form-text2">
 								<select name="direction" id="direction" class="required">
 									<option value="" th:disabled="disabled" th:selected="selected">Direction</option>
-									<option value="oneWay">One way</option>
-									<option value="return">Return</option>
+									<option th:each="direction : ${T(com.luciuswong.taxicabbooking.model.Booking.Direction).values()}" th:value="${direction}" th:text="${#strings.replace(direction, '_', ' ')}"></option>
+<!--									<option value="OneWay">One way</option>-->
+<!--									<option value="Return">Return</option>-->
 								</select>
 							</div>
 						</div>

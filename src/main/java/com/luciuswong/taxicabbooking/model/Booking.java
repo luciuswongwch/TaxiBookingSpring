@@ -1,9 +1,6 @@
 package com.luciuswong.taxicabbooking.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -27,6 +24,8 @@ public class Booking extends BaseEntity {
     private String phoneNumber;
     @Email(message="Email address is invalid")
     private String email;
+    @Enumerated(EnumType.STRING)
+    private CabType cabType;
     @NotBlank(message="Pick-up date must not be blank")
     private String pickUpDate;
     @NotBlank(message="Pick-up time must not be blank")
@@ -37,6 +36,14 @@ public class Booking extends BaseEntity {
     private String dropOffLocation;
     @Range(min=1, max=5, message="Number of passengers must be within 1 to 5")
     private int numberOfPassengers;
-    @NotBlank(message="Direction must not be blank")
-    private String direction;
+    @Enumerated(EnumType.STRING)
+    private Direction direction;
+    private String status;
+
+    public enum CabType {
+        Mini, Sedan, Elite
+    }
+    public enum Direction {
+        One_way, Return
+    }
 }

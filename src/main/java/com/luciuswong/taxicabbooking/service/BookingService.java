@@ -7,6 +7,8 @@ import com.luciuswong.taxicabbooking.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.luciuswong.taxicabbooking.constants.TaxiCabBookingConstants.BOOKING_STATUS_OPEN;
+
 
 @Service
 public class BookingService {
@@ -18,6 +20,7 @@ public class BookingService {
 
     public boolean saveBookingDetails(Booking booking) {
         boolean isSaved = false;
+        booking.setStatus(BOOKING_STATUS_OPEN);
         Booking savedBooking = bookingRepository.save(booking);
         if (savedBooking != null && savedBooking.getBookingId() > 0) {
             isSaved = true;

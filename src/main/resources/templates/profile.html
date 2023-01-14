@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th>
+<html lang="en" xmlns:th xmlns:sec>
 <head>
-    <meta charset="UTF-8" xmlns:th>
+    <meta charset="UTF-8">
     <title>Taxi Cab Booking | Error</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,6 +35,9 @@
 
     <section class="py-5">
         <div class="container py-lg-5 py-3">
+            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin/portal}">
+                <button type="button" class="btn btn-light">Go to admin portal</button>
+            </a>
             <div class="alert alert-danger" role="alert"
                  th:if="${#fields.hasErrors('person.email')}" th:errors="*{person.email}"></div>
             <div class="alert alert-danger" role="alert"
@@ -54,19 +57,19 @@
                     <input type="email" class="form-control" placeholder="Email" th:field="*{email}" required>
                 </div>
                 <div class="form-group">
-                    <label th:for="*{address.streetAddress}" class="col-form-label">Street address</label>
+                    <label th:for="*{address.streetAddress}" class="col-form-label mandatory-field">Street address</label>
                     <input type="text" class="form-control" placeholder="Street address" th:field="*{address.streetAddress}">
                 </div>
                 <div class="form-group">
-                    <label th:for="*{address.city}" class="col-form-label">City</label>
+                    <label th:for="*{address.city}" class="col-form-label mandatory-field">City</label>
                     <input type="text" class="form-control" placeholder="City" th:field="*{address.city}">
                 </div>
                 <div class="form-group">
-                    <label th:for="*{address.regionOrCountry}" class="col-form-label">Region/Country</label>
+                    <label th:for="*{address.regionOrCountry}" class="col-form-label mandatory-field">Region/Country</label>
                     <input type="text" class="form-control" placeholder="Region/Country" th:field="*{address.regionOrCountry}">
                 </div>
                 <div class="form-group">
-                    <label th:for="*{address.zipCode}" class="col-form-label">Zip code</label>
+                    <label th:for="*{address.zipCode}" class="col-form-label mandatory-field">Zip code</label>
                     <input type="text" class="form-control" placeholder="Zip code" th:field="*{address.zipCode}">
                 </div>
                 <div class="right-w3l">

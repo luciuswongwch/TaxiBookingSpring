@@ -29,4 +29,5 @@ public class Contact extends BaseEntity {
     @NotBlank(message="Message must not be blank")
     @Size(min=10, message="Message must be at least 10 characters long")
     private String message;
+    private String status;
 }

@@ -275,102 +275,17 @@
 		<h5 class="heading mb-5 text-center">Taxi Cab</h5>
 		<div class="inner-sec-w3layouts-agileits">
 			<div class="owl-carousel owl-theme">
-				<div class="item">
+				<div class="item" th:each="testimonial : ${testimonials}">
 					<div class="feedback-info">
 						<div class="feedback-top p-4">
-							<p> Sed semper leo metus, a lacinia eros semper at. Etiam sodales orci sit amet vehicula pellentesque. </p>
+							<p th:text="${testimonial.comment}"></p>
 						</div>
 						<div class="feedback-grids">
 							<div class="feedback-img">
-								<img src="/assets/images/team1.jpg" class="img-fluid" alt="" />
+								<img th:src="@{'/assets/images/' + ${testimonial.profilePath}}" class="img-fluid" alt="" />
 							</div>
 							<div class="feedback-img-info">
-								<h5>Kevin Francis</h5>
-								<p>Customer</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="feedback-info">
-						<div class="feedback-top p-4">
-							<p> Sed semper leo metus, a lacinia eros semper at. Etiam sodales orci sit amet vehicula pellentesque. </p>
-						</div>
-						<div class="feedback-grids">
-							<div class="feedback-img">
-								<img src="/assets/images/team2.jpg" class="img-fluid" alt="" />
-							</div>
-							<div class="feedback-img-info">
-								<h5>Peter Guptill</h5>
-								<p>Customer</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="feedback-info">
-						<div class="feedback-top p-4">
-							<p> Sed semper leo metus, a lacinia eros semper at. Etiam sodales orci sit amet vehicula pellentesque. </p>
-						</div>
-						<div class="feedback-grids">
-							<div class="feedback-img">
-								<img src="/assets/images/team1.jpg" class="img-fluid" alt="" />
-							</div>
-							<div class="feedback-img-info">
-								<h5>Steven Wilson</h5>
-								<p>Customer</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="feedback-info">
-						<div class="feedback-top p-4">
-							<p> Sed semper leo metus, a lacinia eros semper at. Etiam sodales orci sit amet vehicula pellentesque. </p>
-						</div>
-						<div class="feedback-grids">
-							<div class="feedback-img">
-								<img src="/assets/images/team2.jpg" class="img-fluid" alt="" />
-							</div>
-							<div class="feedback-img-info">
-								<h5>Kevin Francis</h5>
-								<p>Customer</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="feedback-info">
-						<div class="feedback-top p-4">
-							<p> Sed semper leo metus, a lacinia eros semper at. Etiam sodales orci sit amet vehicula pellentesque. </p>
-						</div>
-						<div class="feedback-grids">
-							<div class="feedback-img">
-								<img src="/assets/images/team1.jpg" class="img-fluid" alt="" />
-							</div>
-							<div class="feedback-img-info">
-								<h5>Peter Guptill</h5>
-								<p>Customer</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="feedback-info">
-						<div class="feedback-top p-4 p-4">
-							<p> Sed semper leo metus, a lacinia eros semper at. Etiam sodales orci sit amet vehicula pellentesque. </p>
-						</div>
-						<div class="feedback-grids">
-							<div class="feedback-img">
-								<img src="/assets/images/team2.jpg" class="img-fluid" alt="" />
-							</div>
-							<div class="feedback-img-info">
-								<h5>Steven Wilson</h5>
+								<h5 th:text="${testimonial.name}"></h5>
 								<p>Customer</p>
 							</div>
 							<div class="clearfix"> </div>

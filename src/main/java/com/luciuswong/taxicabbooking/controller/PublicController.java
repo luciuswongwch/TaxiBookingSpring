@@ -2,7 +2,6 @@ package com.luciuswong.taxicabbooking.controller;
 
 import com.luciuswong.taxicabbooking.model.Person;
 import com.luciuswong.taxicabbooking.repository.PersonRepository;
-import com.luciuswong.taxicabbooking.security.AuthChecker;
 import com.luciuswong.taxicabbooking.service.PersonService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -5394,9 +5394,11 @@ button.close {
   -webkit-appearance: none;
 }
 
+/*
 .modal-open {
   overflow: hidden;
 }
+*/
 
 .modal {
   position: fixed;
