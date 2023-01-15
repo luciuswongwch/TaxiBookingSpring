@@ -10,6 +10,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.List;
+
 @Data
 @Entity
 @FieldsValueMatch.List({
@@ -39,11 +41,15 @@ public class Person extends BaseEntity {
     @Size(min=5, message="Confirm password must be at least 5 characters long")
     @Transient
     private String confirmPassword;
-    @OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST, targetEntity=Role.class)
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST, targetEntity=Role.class)
     @JoinColumn(name="role_id", referencedColumnName="roleId", nullable=false)
     private Role role;
     @Valid
     @OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL, targetEntity=Address.class)
     @JoinColumn(name="address_id", referencedColumnName="addressId", nullable=false)
     private Address address;
+    @OneToMany(mappedBy="person", fetch=FetchType.LAZY, cascade=CascadeType.PERSIST, targetEntity=Booking.class)
+    private List<Booking> bookings;
+    @OneToMany(mappedBy="person", fetch=FetchType.LAZY, cascade=CascadeType.PERSIST, targetEntity=Contact.class)
+    private List<Contact> contacts;
 }

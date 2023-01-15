@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.security.Principal;
-
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Slf4j
@@ -39,12 +37,16 @@ public class BookingController {
     }
 
     @RequestMapping(value="/saveBooking", method=POST)
-    public String saveBooking(@Valid @ModelAttribute("booking") Booking booking, Errors errors, RedirectAttributes redirectAttributes) {
+    public String saveBooking(@Valid @ModelAttribute("booking") Booking booking, Authentication authentication, Errors errors, RedirectAttributes redirectAttributes) {
         if (errors.hasErrors()) {
             log.error("Booking form validation error: " + errors.toString());
             return "booking.html";
         }
-        bookingService.saveBookingDetails(booking);
+        if (authentication != null && authentication.isAuthenticated()) {
+            bookingService.saveBookingDetails(booking, authentication.getName());
+        } else {
+            bookingService.saveBookingDetails(booking, null);
+        }
         redirectAttributes.addFlashAttribute("message", "Booking is sent successfully");
         return "redirect:/booking";
     }

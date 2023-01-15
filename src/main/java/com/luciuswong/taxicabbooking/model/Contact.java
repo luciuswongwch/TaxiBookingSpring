@@ -1,9 +1,6 @@
 package com.luciuswong.taxicabbooking.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -30,4 +27,7 @@ public class Contact extends BaseEntity {
     @Size(min=10, message="Message must be at least 10 characters long")
     private String message;
     private String status;
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST, optional=true)
+    @JoinColumn(name="user_id", referencedColumnName="userId", nullable=true)
+    private Person person;
 }

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th>
+<head>
+    <meta charset="UTF-8">
+    <title>Taxi Cab Booking | Admin</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <script type="application/x-javascript">
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+
+    <!-- css files -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.css"> <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all" /> <!-- Style-CSS -->
+    <link rel="stylesheet" href="/assets/css/fontawesome-all.css"> <!-- Font-Awesome-Icons-CSS -->
+    <!-- //css files -->
+
+    <!-- web-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext" rel="stylesheet">
+    <!-- //web-fonts -->
+</head>
+<body>
+<div th:replace="partials/header :: header"></div>
+
+<div class="banner" id="home">
+    <div th:replace="partials/secondHeader :: header"></div>
+</div>
+
+<section class="contact py-5">
+    <div class="container py-lg-5">
+        <div class="alert alert-info" role="alert"
+             th:if="${!#strings.isEmpty(message)}" th:text="${message}"></div>
+        <a th:href="@{/admin/contact}">
+            <button type="button" class="btn btn-light">View all contact messages</button>
+        </a>
+        <h1 class="text-center" style="margin-bottom: 1rem;">Booking management</h1>
+        <table class="table table-hover datatable">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">
+                    <a th:href="@{'/admin/booking/page/' + ${currentPage} + '?sortField=bookingId&sortDir=' + ${reverseSortDir}}">Booking id</a>
+                </th>
+                <th scope="col">
+                    <a th:href="@{'/admin/booking/page/' + ${currentPage} + '?sortField=createdAt&sortDir=' + ${reverseSortDir}}">Submission time</a>
+                </th>
+                <th scope="col">
+                    <a th:href="@{'/admin/booking/page/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">Name</a>
+                </th>
+                <th scope="col">
+                    <a th:href="@{'/admin/booking/page/' + ${currentPage} + '?sortField=phoneNumber&sortDir=' + ${reverseSortDir}}">Phone number</a>
+                </th>
+                <th scope="col">
+                    <a th:href="@{'/admin/booking/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">Email</a>
+                </th>
+                <th scope="col">
+                    <a th:href="@{'/admin/booking/page/' + ${currentPage} + '?sortField=cabType&sortDir=' + ${reverseSortDir}}">Cab type</a>
+                </th>
+                <th scope="col">
+                    <a th:href="@{'/admin/booking/page/' + ${currentPage} + '?sortField=pickUpDate&sortDir=' + ${reverseSortDir}}">Pickup date</a>
+                </th>
+                <th scope="col">
+                    <a th:href="@{'/admin/booking/page/' + ${currentPage} + '?sortField=pickUpTime&sortDir=' + ${reverseSortDir}}">Pickup time</a>
+                </th>
+                <th scope="col">
+                    <a th:href="@{'/admin/booking/page/' + ${currentPage} + '?sortField=pickUpLocation&sortDir=' + ${reverseSortDir}}">Pickup location</a>
+                </th>
+                <th scope="col">
+                    <a th:href="@{'/admin/booking/page/' + ${currentPage} + '?sortField=dropOffLocation&sortDir=' + ${reverseSortDir}}">Dropoff location</a>
+                </th>
+                <th scope="col">
+                    <a th:href="@{'/admin/booking/page/' + ${currentPage} + '?sortField=numberOfPassengers&sortDir=' + ${reverseSortDir}}">Number of passengers</a>
+                </th>
+                <th scope="col">
+                    <a th:href="@{'/admin/booking/page/' + ${currentPage} + '?sortField=direction&sortDir=' + ${reverseSortDir}}">Direction</a>
+                </th>
+                <th scope="col">
+                    <a th:href="@{'/admin/booking/page/' + ${currentPage} + '?sortField=status&sortDir=' + ${reverseSortDir}}">Status</a>
+                </th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="booking : ${bookings}">
+                <th th:text="${booking.bookingId}"></th>
+                <td th:text="${#temporals.format(booking.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${booking.name}"></td>
+                <td th:text="${booking.phoneNumber}"></td>
+                <td th:text="${booking.email}"></td>
+                <td th:text="${booking.cabType}"></td>
+                <td th:text="${booking.pickUpDate}"></td>
+                <td th:text="${booking.pickUpTime}"></td>
+                <td th:text="${booking.pickUpLocation}"></td>
+                <td th:text="${booking.dropOffLocation}"></td>
+                <td th:text="${booking.numberOfPassengers}"></td>
+                <td th:text="${#strings.replace(booking.direction, '_', ' ')}"></td>
+                <td th:text="${booking.status}"></td>
+                <td>
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#bookingCloseModal" th:attr="data-booking-id=${booking.bookingId}">Close</button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#bookingDeleteModal" th:attr="data-booking-id=${booking.bookingId}">Delete</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-center">
+            <ul class="pagination">
+                <li th:if="${currentPage > 1}" class="page-item">
+                    <a class="page-link" th:href="@{'/admin/booking/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" tabindex="-1">Previous</a>
+                </li>
+                <li th:unless="${currentPage > 1}" class="page-item disabled">
+                    <a class="page-link" tabindex="-1">Previous</a>
+                </li>
+                <li th:each="i : ${#numbers.sequence(1, totalPages)}" class="page-item" th:classappend="${currentPage != i} ? '' : active">
+                    <a class="page-link" th:href="@{'/admin/booking/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                </li>
+                <li th:if="${currentPage < totalPages}" class="page-item">
+                    <a class="page-link" th:href="@{'/admin/booking/page/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" tabindex="-1">Next</a>
+                </li>
+                <li th:unless="${currentPage < totalPages}" class="page-item disabled">
+                    <a class="page-link" tabindex="-1">Next</a>
+                </li>
+            </ul>
+        </div>
+        <div class="modal fade" id="bookingCloseModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Close booking for bookingId <span id="bookingCloseTitle"></span></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure to change the status of this booking to CLOSED?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a><button type="button" class="btn btn-warning">Close booking</button></a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="bookingDeleteModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete booking for bookingId <span id="bookingDeleteTitle"></span></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this booking?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a><button type="button" class="btn btn-danger">Delete booking</button></a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:replace="partials/footer :: footer"></div>
+
+<!-- js -->
+<script type="text/javascript" src="/assets/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap -->
+<!-- //js -->
+
+<script>
+    $("#bookingCloseModal").on("show.bs.modal", function(event) {
+        var button = $(event.relatedTarget);
+        var recipient = button.data("booking-id");
+        var modal = $(this);
+        modal.find("#bookingCloseTitle").text(recipient);
+        modal.find(".modal-footer > a").attr("href", "/admin/closeBooking?bookingId=" + recipient);
+    });
+    $("#bookingDeleteModal").on("show.bs.modal", function(event) {
+        var button = $(event.relatedTarget);
+        var recipient = button.data("booking-id");
+        var modal = $(this);
+        modal.find("#bookingDeleteTitle").text(recipient);
+        modal.find(".modal-footer > a").attr("href", "/admin/deleteBooking?bookingId=" + recipient);
+    });
+</script>
+</body>
+</html>

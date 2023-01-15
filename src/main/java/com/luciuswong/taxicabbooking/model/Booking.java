@@ -39,6 +39,9 @@ public class Booking extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Direction direction;
     private String status;
+    @ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.PERSIST, optional=true)
+    @JoinColumn(name="user_id", referencedColumnName="userId", nullable=true)
+    private Person person;
 
     public enum CabType {
         Mini, Sedan, Elite

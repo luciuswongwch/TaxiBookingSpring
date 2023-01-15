@@ -2195,3 +2195,26 @@ ul.radio-w3ls li {
 	}
 }
 /*-- //Responsive Design --*/
+
+table.datatable > thead > tr > th {
+    padding-right: 30px;
+}
+table.datatable > thead th {
+    cursor: pointer;
+    position: relative;
+}
+table.datatable > thead th > a:before,
+table.datatable > thead th > a:after {
+    position: absolute;
+    bottom: 0.5em;
+    display: block;
+    opacity: 0.3;
+}
+ table.datatable > thead th > a:before {
+    right: 1em;
+    content: "↑";
+ }
+ table.datatable > thead th > a:after {
+    right: 0.5em;
+    content: "↓";
+ }

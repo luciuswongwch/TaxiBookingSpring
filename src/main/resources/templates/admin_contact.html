@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th>
+<head>
+    <meta charset="UTF-8">
+    <title>Taxi Cab Booking | Admin</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <script type="application/x-javascript">
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+
+    <!-- css files -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.css"> <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="all" /> <!-- Style-CSS -->
+    <link rel="stylesheet" href="/assets/css/fontawesome-all.css"> <!-- Font-Awesome-Icons-CSS -->
+    <!-- //css files -->
+
+    <!-- web-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext" rel="stylesheet">
+    <!-- //web-fonts -->
+</head>
+<body>
+    <div th:replace="partials/header :: header"></div>
+
+    <div class="banner" id="home">
+        <div th:replace="partials/secondHeader :: header"></div>
+    </div>
+
+    <section class="contact py-5">
+        <div class="container py-lg-5">
+            <div class="alert alert-info" role="alert"
+                 th:if="${!#strings.isEmpty(message)}" th:text="${message}"></div>
+            <a th:href="@{/admin/booking}">
+                <button type="button" class="btn btn-light">Go to booking management</button>
+            </a>
+            <h1 class="text-center" style="margin-bottom: 1rem;">Contact messages</h1>
+            <table class="table table-hover datatable">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">
+                        <a th:href="@{'/admin/contact/page/' + ${currentPage} + '?sortField=contactId&sortDir=' + ${reverseSortDir}}">Contact id</a>
+                    </th>
+                    <th scope="col">
+                        <a th:href="@{'/admin/contact/page/' + ${currentPage} + '?sortField=createdAt&sortDir=' + ${reverseSortDir}}">Submission time</a>
+                    </th>
+                    <th scope="col">
+                        <a th:href="@{'/admin/contact/page/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">Name</a>
+                    </th>
+                    <th scope="col">
+                        <a th:href="@{'/admin/contact/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">Email</a>
+                    </th>
+                    <th scope="col">
+                        <a th:href="@{'/admin/contact/page/' + ${currentPage} + '?sortField=subject&sortDir=' + ${reverseSortDir}}">Subject</a>
+                    </th>
+                    <th scope="col">
+                        <a th:href="@{'/admin/contact/page/' + ${currentPage} + '?sortField=message&sortDir=' + ${reverseSortDir}}">Message</a>
+                    </th>
+                    <th scope="col">
+                        <a th:href="@{'/admin/contact/page/' + ${currentPage} + '?sortField=status&sortDir=' + ${reverseSortDir}}">Status</a>
+                    </th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="contact : ${contacts}">
+                    <th th:text="${contact.contactId}"></th>
+                    <td th:text="${#temporals.format(contact.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <td th:text="${contact.name}"></td>
+                    <td th:text="${contact.email}"></td>
+                    <td th:text="${contact.subject}"></td>
+                    <td th:text="${contact.message}"></td>
+                    <td th:text="${contact.status}"></td>
+                    <td>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#contactCloseModal" th:attr="data-contact-id=${contact.contactId}">Close</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#contactDeleteModal" th:attr="data-contact-id=${contact.contactId}">Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center">
+                <ul class="pagination">
+                    <li th:if="${currentPage > 1}" class="page-item">
+                        <a class="page-link" th:href="@{'/admin/contact/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" tabindex="-1">Previous</a>
+                    </li>
+                    <li th:unless="${currentPage > 1}" class="page-item disabled">
+                        <a class="page-link" tabindex="-1">Previous</a>
+                    </li>
+                    <li th:each="i: ${#numbers.sequence(1, totalPages)}" class="page-item" th:classappend="${currentPage != i} ? '' : active">
+                        <a class="page-link" th:href="@{'/admin/contact/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                    </li>
+                    <li th:if="${currentPage < totalPages}" class="page-item">
+                        <a class="page-link" th:href="@{'/admin/contact/page/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" tabindex="-1">Next</a>
+                    </li>
+                    <li th:unless="${currentPage < totalPages}" class="page-item disabled">
+                        <a class="page-link" tabindex="-1">Next</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="modal fade" id="contactCloseModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Close contact message for contactId <span id="contactCloseTitle"></span></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure to change the status of this contact message to CLOSED?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a><button type="button" class="btn btn-warning">Confirm changes</button></a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="contactDeleteModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete contact message for contactId <span id="contactDeleteTitle"></span></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete this contact message?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a><button type="button" class="btn btn-danger">Delete message</button></a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div th:replace="partials/footer :: footer"></div>
+
+    <!-- js -->
+    <script type="text/javascript" src="/assets/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap.js"></script> <!-- Necessary-JavaScript-File-For-Bootstrap -->
+    <!-- //js -->
+
+    <script>
+        $("#contactCloseModal").on("show.bs.modal", function(event) {
+            var button = $(event.relatedTarget);
+            var recipient = button.data("contact-id");
+            var modal = $(this);
+            modal.find("#contactCloseTitle").text(recipient);
+            modal.find(".modal-footer > a").attr("href", "/admin/closeContactMsg?contactId=" + recipient);
+        });
+        $("#contactDeleteModal").on("show.bs.modal", function(event) {
+            var button = $(event.relatedTarget);
+            var recipient = button.data("contact-id");
+            var modal = $(this);
+            modal.find("#contactDeleteTitle").text(recipient);
+            modal.find(".modal-footer > a").attr("href", "/admin/deleteContactMsg?contactId=" + recipient);
+        });
+    </script>
+</body>
+</html>

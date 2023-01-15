@@ -14,13 +14,16 @@ import static com.luciuswong.taxicabbooking.constants.TaxiCabBookingConstants.BO
 public class BookingService {
     @Autowired
     private BookingRepository bookingRepository;
-
     @Autowired
     private PersonRepository personRepository;
 
-    public boolean saveBookingDetails(Booking booking) {
+    public boolean saveBookingDetails(Booking booking, String loggedInUsername) {
         boolean isSaved = false;
         booking.setStatus(BOOKING_STATUS_OPEN);
+        if (loggedInUsername != null) {
+            Person loggedInPerson = getLoggedInPerson(loggedInUsername);
+            booking.setPerson(loggedInPerson);
+        }
         Booking savedBooking = bookingRepository.save(booking);
         if (savedBooking != null && savedBooking.getBookingId() > 0) {
             isSaved = true;
@@ -28,7 +31,7 @@ public class BookingService {
         return isSaved;
     }
 
-    public Person getLoggedInPerson(String username) {
-        return personRepository.readByUsername(username);
+    public Person getLoggedInPerson(String loggedInUsername) {
+        return personRepository.readByUsername(loggedInUsername);
     }
 }

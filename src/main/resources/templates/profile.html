@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th xmlns:sec>
 <head>
     <meta charset="UTF-8">
-    <title>Taxi Cab Booking | Error</title>
+    <title>Taxi Cab Booking | Profile</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
@@ -35,7 +35,7 @@
 
     <section class="py-5">
         <div class="container py-lg-5 py-3">
-            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin/portal}">
+            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin/contact}">
                 <button type="button" class="btn btn-light">Go to admin portal</button>
             </a>
             <div class="alert alert-danger" role="alert"
