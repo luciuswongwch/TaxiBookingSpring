@@ -1,5 +1,6 @@
 package com.luciuswong.taxicabbooking.controller;
 
+import com.luciuswong.taxicabbooking.config.CustomProperties;
 import com.luciuswong.taxicabbooking.constants.TaxiCabBookingConstants;
 import com.luciuswong.taxicabbooking.model.Booking;
 import com.luciuswong.taxicabbooking.model.Contact;
@@ -33,6 +34,8 @@ public class AdminController {
     private BookingRepository bookingRepository;
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private CustomProperties customProperties;
 
     @RequestMapping("/contact")
     public String displayAdminContact() {
@@ -45,7 +48,7 @@ public class AdminController {
     @RequestMapping("/contact/page/{pageNumber}")
     public ModelAndView displayAdminContact(Model model, @PathVariable(name="pageNumber") int pageNumber,
                                       @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir) {
-        Page<Contact> contactPages = adminService.findContactsAndPaginate(5, pageNumber, sortField, sortDir);
+        Page<Contact> contactPages = adminService.findContactsAndPaginate(customProperties.getPageSize(), pageNumber, sortField, sortDir);
         ModelAndView modelAndView = new ModelAndView("admin_contact.html");
         model.addAttribute("currentPage", pageNumber);
         model.addAttribute("totalPages", contactPages.getTotalPages());
@@ -59,7 +62,7 @@ public class AdminController {
     @RequestMapping("/booking/page/{pageNumber}")
     public ModelAndView displayAdminBooking(Model model, @PathVariable(name="pageNumber") int pageNumber,
                                       @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir) {
-        Page<Booking> bookingPages = adminService.findBookingsAndPaginate(5, pageNumber, sortField, sortDir);
+        Page<Booking> bookingPages = adminService.findBookingsAndPaginate(customProperties.getPageSize(), pageNumber, sortField, sortDir);
         ModelAndView modelAndView = new ModelAndView("admin_booking.html");
         model.addAttribute("currentPage", pageNumber);
         model.addAttribute("totalPages", bookingPages.getTotalPages());

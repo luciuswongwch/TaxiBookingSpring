@@ -78,14 +78,18 @@
             </form>
             <hr />
             <h3 class="heading text-capitalize text-center">Update password</h3>
-            <form th:action="@{/updatePassword}" method="post" th:object="${person}">
+            <form th:action="@{/updatePassword}" method="post">
                 <div class="form-group">
-                    <label th:for="*{password}" class="col-form-label">Password</label>
-                    <input type="password" class="form-control" placeholder="Password" th:field="*{password}" required>
+                    <label for="oldPassword" class="col-form-label">Old password</label>
+                    <input type="password" class="form-control" placeholder="Password" id="oldPassword" name="oldPassword" required>
                 </div>
                 <div class="form-group">
-                    <label th:for="*{confirmPassword}" class="col-form-label">Confirm password</label>
-                    <input type="password" class="form-control" placeholder="Confirm password" th:field="*{confirmPassword}" required>
+                    <label for="newPassword" class="col-form-label">New password</label>
+                    <input type="password" class="form-control" placeholder="Password" id="newPassword" name="newPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword" class="col-form-label">Confirm password</label>
+                    <input type="password" class="form-control" placeholder="Confirm password" id="confirmPassword" name="confirmPassword" required>
                 </div>
                 <div class="right-w3l">
                     <input type="submit" class="form-control" value="Save changes">

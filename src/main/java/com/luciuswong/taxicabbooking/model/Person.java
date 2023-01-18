@@ -1,5 +1,6 @@
 package com.luciuswong.taxicabbooking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.luciuswong.taxicabbooking.annotation.FieldsValueMatch;
 import com.luciuswong.taxicabbooking.annotation.PasswordValidator;
 import jakarta.persistence.*;
@@ -32,14 +33,17 @@ public class Person extends BaseEntity {
     @NotBlank(message="Confirm email must not be blank")
     @Email(message="Confirm email address is invalid")
     @Transient
+    @JsonIgnore
     private String confirmEmail;
     @NotBlank(message="Password must not be blank")
     @Size(min=5, message="Password must be at least 5 characters long")
     @PasswordValidator
+    @JsonIgnore
     private String password;
     @NotBlank(message="Confirm password must not be blank")
     @Size(min=5, message="Confirm password must be at least 5 characters long")
     @Transient
+    @JsonIgnore
     private String confirmPassword;
     @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST, targetEntity=Role.class)
     @JoinColumn(name="role_id", referencedColumnName="roleId", nullable=false)

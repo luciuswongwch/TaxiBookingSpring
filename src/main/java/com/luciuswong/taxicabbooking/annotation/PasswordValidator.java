@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Target( { ElementType.METHOD, ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PasswordValidator {
-    String message() default "Please choose a stronger password.";
+    String message() default "Please choose a stronger password";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

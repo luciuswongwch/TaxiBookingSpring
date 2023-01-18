@@ -19,8 +19,8 @@ public class PersonService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public boolean createNewUser(Person person) {
-        Role role = roleRepository.getByRoleName(TaxiCabBookingConstants.INDIVIDUAL_ROLE);
+    public boolean createNewUser(Person person, String roleString) {
+        Role role = roleRepository.getByRoleName(roleString);
         person.setRole(role);
         person.setAddress(new Address());
         person.setPassword(passwordEncoder.encode(person.getPassword()));

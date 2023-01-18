@@ -1,8 +1,12 @@
 package com.luciuswong.taxicabbooking.validations;
 
 import com.luciuswong.taxicabbooking.annotation.PasswordValidator;
+import com.luciuswong.taxicabbooking.config.CustomProperties;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Arrays;
 import java.util.List;

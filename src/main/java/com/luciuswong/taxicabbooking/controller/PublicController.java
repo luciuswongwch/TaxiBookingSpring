@@ -1,5 +1,6 @@
 package com.luciuswong.taxicabbooking.controller;
 
+import com.luciuswong.taxicabbooking.constants.TaxiCabBookingConstants;
 import com.luciuswong.taxicabbooking.model.Person;
 import com.luciuswong.taxicabbooking.repository.PersonRepository;
 import com.luciuswong.taxicabbooking.service.PersonService;
@@ -43,7 +44,7 @@ public class PublicController {
             errorMessages.add("Email is already registered");
         }
         if (!errors.hasErrors() && !isUsernameRegistered && !isEmailRegistered) {
-            boolean isSaved = personService.createNewUser(person);
+            boolean isSaved = personService.createNewUser(person, TaxiCabBookingConstants.INDIVIDUAL_ROLE);
             if (isSaved) {
                 return "redirect:/login?register=true";
             } else {
