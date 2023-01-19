@@ -31,7 +31,8 @@ public class ProjectSecurityConfig {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().ignoringRequestMatchers(PathRequest.toH2Console())
+        http.csrf()
+                //.ignoringRequestMatchers(PathRequest.toH2Console())
                 .ignoringRequestMatchers("/data-api/**")
                 //.ignoringRequestMatchers("/public/**")
                 .and().authorizeHttpRequests()
@@ -54,12 +55,12 @@ public class ProjectSecurityConfig {
                 .requestMatchers("/logout").permitAll()
                 .requestMatchers("/error").permitAll()
                 .requestMatchers("/public/**").permitAll()
-                .requestMatchers(PathRequest.toH2Console()).permitAll()
+                //.requestMatchers(PathRequest.toH2Console()).permitAll()
                 .and().formLogin().loginPage("/login")
                 .defaultSuccessUrl("/profile").failureUrl("/login?error=true").permitAll()
                 .and().logout().logoutSuccessUrl("/login?logout=true").invalidateHttpSession(true).permitAll()
                 .and().httpBasic();
-        http.headers().frameOptions().disable();
+        //http.headers().frameOptions().disable();
         return http.build();
     }
 
