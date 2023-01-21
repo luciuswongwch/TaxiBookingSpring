@@ -587,15 +587,15 @@ label{
 }
 
 .banner-img.one {
-	background: url(../images/banner2.jpg) no-repeat 0px 0px;
+	background: url(../images/banner2.jpg) no-repeat center 0px;
 }
 
 .banner-img.two {
-	background: url(../images/banner5.jpg) no-repeat 0px 0px;
+	background: url(../images/banner4.jpg) no-repeat center 0px;
 }
 
 .banner-img.three {
-	background: url(../images/banner3.jpg) no-repeat 0px 0px;
+	background: url(../images/banner3.jpg) no-repeat center 0px;
 }
 
 .banner-info {
