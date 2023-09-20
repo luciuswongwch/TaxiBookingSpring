@@ -1,6 +1,6 @@
 ## Deployment  
 
-URL: http://luciuswong.com/  
+~~URL: http://luciuswong.com/~~  
 
 Image preview:  
 
